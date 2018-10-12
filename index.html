@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="script" type="application/javascript" href="script.js">
+    <title>Game of Life by Roman Kuratli</title>
+</head>
+<body>
+    <h1>Game of Life by Roman Kuratli</h1>
+    <hr/>
+    <button onclick="resetField();">Reset</button>
+    <select id="startPatterns"></select> <button onclick="applyStartPattern();">Apply start pattern</button>
+    <button onclick="simulateStep();">Step</button>
+    <hr/>
+    <table>
+        <tbody id="table"></tbody>
+    </table>
+    <script src="script.js"></script>
+    <script>window.onload = function () {
+        init();
+    }</script>
+</body>
+</html>
