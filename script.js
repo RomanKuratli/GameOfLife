@@ -44,7 +44,13 @@ function drawField() {
     }
 }
 
-
+function onCellClick(x, y) {
+    console.log("onCellClick x:" + x + " y:"+y);
+    if (document.getElementById("editMode").checked == true) {
+        FIELD[y][x] = !FIELD[y][x];
+        drawField();
+    }
+}
 
 function init() {
     clearField();
@@ -56,6 +62,9 @@ function init() {
         for (let x = 0; x < SIZE; x++) {
             let cell = row.insertCell(-1);
             cell.id = "x" + x + "y" + y;
+            cell.addEventListener("click", function () {
+                onCellClick(x, y);
+            });
         }
     }
 
