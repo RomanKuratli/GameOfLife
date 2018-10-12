@@ -1,6 +1,7 @@
 let SIZE = 100;
 let MIDDLE = SIZE / 2;
 let FIELD = getEmptyField();
+let INTERVAL_ID = null;
 
 function getEmptyField() {
     let field = [];
@@ -45,7 +46,6 @@ function drawField() {
 }
 
 function onCellClick(x, y) {
-    console.log("onCellClick x:" + x + " y:"+y);
     if (document.getElementById("editMode").checked == true) {
         FIELD[y][x] = !FIELD[y][x];
         drawField();
@@ -136,4 +136,17 @@ function simulateStep() {
     }
     FIELD = newField;
     drawField();
+}
+
+function startInterval() {
+    let interval = parseInt(document.getElementById("interval").value);
+    INTERVAL_ID = setInterval(simulateStep, interval);
+    document.getElementById("startInterval").disabled = true;
+    document.getElementById("stopInterval").disabled = false;
+}
+
+function stopInterval() {
+    clearInterval(INTERVAL_ID);
+    document.getElementById("startInterval").disabled = false;
+    document.getElementById("stopInterval").disabled = true;
 }

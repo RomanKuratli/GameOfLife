@@ -13,6 +13,9 @@
     <select id="startPatterns"></select> <button onclick="applyStartPattern();">Apply start pattern</button>
     <button onclick="simulateStep();">Step</button>
     Edit mode: <input type="checkbox" id="editMode">
+    Interval (ms) <input type="number" id="interval" value="500">
+    <button id="startInterval" onclick="startInterval();">Start interval</button>
+    <button id="stopInterval" onclick="stopInterval();" disabled>Stop interval</button>
     <hr/>
     <table>
         <tbody id="table"></tbody>
