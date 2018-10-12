@@ -84,8 +84,38 @@ function resetField() {
     drawField();
 }
 
-function evaluateAlive(x, y, field) {
+function getNeighbours(x, y) {
+    neighbours = [];
+    for (let x2 = x - 1; x2 < x + 2; x2++) {
+        for (let y2 = y - 1; y2 < y + 2; y2++) {
+            // range check and exclusion of the very same cell
+            if(x2 >= 0 && x2 < SIZE && y2 >= 0 && y2 < SIZE && ( x != x2 || y != y2)) {
+                neighbours.push({x: x2, y: y2});
+            }
+        }
+    }
+    return neighbours;
+}
 
+function countAliveNeighbours(x, y, field) {
+    let neighbours = getNeighbours(x, y);
+    let alive = 0;
+    neighbours.forEach(function (value, index) {
+        if(field[value.y][value.x]) {
+            alive++;
+        }
+    });
+    return alive;
+}
+
+function evaluateAlive(x, y, field) {
+    let isNowAlive = field[y][x];
+    let aliveNeighbours = countAliveNeighbours(x, y, field);
+    if (isNowAlive) {
+        if (aliveNeighbours == 2 || aliveNeighbours == 3) return true; // cell keeps alive
+        return false // cell dies due to starvation or overcrowding
+    } else if (aliveNeighbours == 3) return true; // cell comes alive
+    return false // cell remains dead
 }
 
 function simulateStep() {
